@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS ip_management;
+  
+CREATE TABLE ip_management (
+  id INT AUTO_INCREMENT  PRIMARY KEY,
+  ip VARCHAR(50) NOT NULL,
+  status VARCHAR(100) NOT NULL
+);

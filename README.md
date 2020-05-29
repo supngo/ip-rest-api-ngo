@@ -7,3 +7,72 @@ The REST API must support four endpoint:
   * **List IP addresses** - return all IP addresses in the system with their current status
   * **Acquire an IP** - set the status of a certain IP to “acquired”
   * **Release an IP** - set the status of a certain IP to “available”
+
+
+  # Solution:
+  ## 1. Requirements:
+  - Docker https://www.docker.com/
+  - Postman (https://www.postman.com/) or any other Rest client tools
+  - Java8 (Don't need to install if using docker)
+  - Maven (Don't need to install if using docker)
+
+  ## 2. How to build and run
+  - Checkout the repo
+  - Run locally:
+  ```
+  mvn clean package
+  java -jar target/trillion-0.0.1-SNAPSHOT.jar
+  ```
+  - Run in Docker:
+  ```
+  Install docker
+  docker build -t trillion:latest .
+  docker run -p 8080:8080 trillion:latest
+  ```
+
+  ## 3. Test Rest Endpoints
+  ### A. Create IP addresses
+  **POST** ***/ip_management/create***
+
+  ***Payload Example***
+  ```
+  {
+    "ip": "10.10.0.0/24"
+  }
+  ```
+
+  ***Validations:***
+  - Valid/invalid CIDR Block
+  - Overlapped CIDR Block
+
+  ### B. List IP addresses:
+  **GET** ***/ip_management/get***
+
+  ### C. Acquire an IP:
+  **PUT** ***/ip_management/acquire***
+
+  ***Payload Example***
+  ```
+  {
+    "ip": "10.10.0.1"
+  }
+  ```
+
+  ***Validations:***
+  - Valid/invalid IP
+  - IP not found
+
+  ### D. Release an IP:
+  **PUT** ***/ip_management/release***
+  
+  ***Payload Example***
+  ```
+  {
+    "ip": "10.10.0.1"
+  }
+  ```
+  ***Validations:***
+  - Valid/invalid IP
+  - IP not found
+
+Question? thongo5430@gmail.com
