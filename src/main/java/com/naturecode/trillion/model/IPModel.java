@@ -18,7 +18,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 public class IPModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

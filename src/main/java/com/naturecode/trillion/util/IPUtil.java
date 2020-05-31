@@ -35,14 +35,14 @@ public class IPUtil {
 
   public boolean overlapCIDR(IPModel cidr) throws IPException {
     try {
-      List<IPModel> currentIPList = ipRepository.findAll();
       SubnetUtils ipUtils = new SubnetUtils(cidr.getIp());
+      List<IPModel> currentIPList = ipRepository.findAll();
       List<IPModel> overlapIps = currentIPList.stream().filter(ip -> {
         return ipUtils.getInfo().isInRange(ip.getIp()) 
         || ip.getIp().equals(ipUtils.getInfo().getNetworkAddress()) 
         || ip.getIp().equals(ipUtils.getInfo().getBroadcastAddress());
       }).collect(Collectors.toList());
-      return (overlapIps != null && overlapIps.size() > 0);
+      return (overlapIps.size() > 0);
     } catch (IllegalArgumentException e) {
         throw new IPException("CIDR Block Invalid");
     }

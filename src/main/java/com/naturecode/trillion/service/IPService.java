@@ -53,7 +53,7 @@ public class IPService {
     if (!InetAddressValidator.getInstance().isValid(ipModel.getIp())) {
       throw new IPException("IP Invalid");
     }
-    IPModel ip = ipRepository.findByIP(ipModel.getIp( )).orElseThrow(() -> new IPException("IP Not Found"));
+    IPModel ip = ipRepository.findByIP(ipModel.getIp()).orElseThrow(() -> new IPException("IP Not Found"));
     ip.setStatus(status);
     ipRepository.save(ip);
     ip.setId(null);

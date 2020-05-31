@@ -54,7 +54,6 @@ public class IPController {
     catch (Exception e) {
       log.error("Exception in createIP(): {}", e);
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new IPResult(500, "Server Error"));
-      // throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Server Error", e);
     }
   }
 
